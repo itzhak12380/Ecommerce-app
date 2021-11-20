@@ -16,10 +16,16 @@ app.get('/', (req, res) => {
 
 // import routes
 const userRouter = require('./routes/userRouter')
+const categoryRouter = require('./routes/categoryRouter')
+const uploadRouter = require('./routes/uploadRouter')
+const productRouter = require('./routes/productRouter')
 
 
 // user router
 app.use('/user', userRouter)
+app.use('/api', categoryRouter)
+app.use('/api', uploadRouter)
+app.use('/api', productRouter)
 
 
 

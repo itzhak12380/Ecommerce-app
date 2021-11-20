@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken")
 require('dotenv').config()
 const register = async (req, res) => {
     try {
-        const { name, email, password } = req.body
+        const { name, email, password,role } = req.body
 
         const user = await Users.findOne({ email })
         if (user) return res.status(400).json({ message: "email already in use" })
@@ -16,7 +16,8 @@ const register = async (req, res) => {
                 if (err) throw err
                 req.body.password = hash
                 const newUser = new Users({
-                    name, email, password: req.body.password
+                    name, email,role,
+                    password: req.body.password
                 })
                 await newUser.save()
                 const accessToken = createAccessToken({ id: newUser._id })
@@ -67,9 +68,9 @@ const logout = (req,res)=>{
 // }
 const getUser =async (req,res)=>{
     try {
-        const user =await Users.findOne({_id:req.user.id}).select("-password")
+        const user = await Users.findOne({_id:req.user.id}).select("-password")
         if(!user) res.status(401).json({message:"user dosnt exist"})
-        res.json(user)
+        res.json({user})
     } catch (error) {
         res.status(500).json({ error: error.message })
     }
