@@ -1,6 +1,28 @@
+
+
+.App {
+  max-width: 1230px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-shadow:  0 0 35px #eee;
+}
+a{
+  text-decoration: none;
+}
+ul li{
+  list-style: none;
+}
+button{
+  order: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+}
+
 /* .App {
   text-align: center;
-} */
+}
 
 .App-logo {
   height: 40vmin;
@@ -17,6 +39,10 @@
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
+ 
+ 
+ 
+ 
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -35,4 +61,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */

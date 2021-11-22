@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Mainpages() {
+function Cart() {
     return (
         <div>
-            main pages
+            <h1>cart</h1>
         </div>
     )
 }
 
-export default Mainpages
+export default Cart

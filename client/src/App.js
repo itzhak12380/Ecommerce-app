@@ -1,19 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter as Router } from 'react-router-dom'
-import { DataProvider } from './globalState';
-import Header from './components/headers/Header';
-import Mainpages from './components/mainPages/pages';
+import Container from './components/pages/mainPage/container';
+import {
+  HashRouter as Router,
+} from 'react-router-dom'
+import { DataProvider } from './components/features/globalState/GlobalState'
+
 function App() {
   return (
-    <DataProvider>
-      <div className="App">
-        <Router>
-          <Header />
-          <Mainpages />
-        </Router>
-      </div>
-    </DataProvider>
+    <div className="App">
+      <DataProvider>
+        <div className="App">
+          <Router>
+            <Container />
+          </Router>
+        </div>
+      </DataProvider>
+    </div>
   );
 }
 
