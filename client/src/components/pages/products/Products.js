@@ -25,7 +25,7 @@ function Products() {
             <div className="products">
                 {
                     products.map(products => {
-                        return <ProductItem key={products._id} product={products} isAdmin={isAdmin} />
+                        return <ProductItem key={products._id} product={products} setproduct={setproduct} isAdmin={isAdmin} />
                     })
                 }
             </div>
