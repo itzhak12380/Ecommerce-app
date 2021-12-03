@@ -13,9 +13,14 @@ function Register() {
     const registerSubmit = async e => {
         e.preventDefault()
         try {
-            fetch("http://localhost:8080/user/register", { method: "post", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...user }) }).then(res => res.json()).then(responce => console.log(responce) ).catch(error => console.log(error))
-            // localStorage.setItem('firstLogin', true)
-            // window.location.href = "/";
+          const res =  await fetch("http://localhost:8080/user/register", { method: "post", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...user }) })
+            .then(res => res.json())
+            .then(responce => responce )
+            .catch(error => error)
+            // console.log(res);
+            localStorage.setItem('accessToken', res.accessToken)
+            localStorage.setItem('firstLogin', true)
+            window.location.href = "/";
         } catch (error) {
             alert(error.responce.data.message)
         }

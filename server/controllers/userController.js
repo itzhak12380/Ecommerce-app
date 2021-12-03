@@ -1,6 +1,7 @@
 const Users = require("../models/userModel")
 const bcrypt = require('bcrypt')
 const jwt = require("jsonwebtoken")
+const Payments = require('../models/paymentModel')
 require('dotenv').config()
 const register = async (req, res) => {
     try {
@@ -28,7 +29,7 @@ const register = async (req, res) => {
                     path: '/user/refresh_token',
                     maxAge: 7 * 24 * 60 * 60 * 1000 // 7d
                 })
-                res.status(200).json({ accessToken })
+                res.status(200).json({ accessToken,refreshtoken })
             })
         })
     } catch (error) {
@@ -40,9 +41,13 @@ const login = async (req, res) => {
     try {
         const { email, password } = req.body
         const user = await Users.findOne({ email })
-        if (!user) res.status(400).json({ mmessage: "user email dosnt exist" })
+        if (!user) {
+            return res.status(400).json({ message: "user email dosnt exist" })
+        }
         const isMatch = bcrypt.compare(password, user.password)
-        if (!isMatch) res.status(400).json({ message: "password dosnt match the account" })
+        if (!isMatch) {
+            return res.status(400).json({ message: "password dosnt match the account" })
+        }
         const accessToken = createAccessToken({ id: user._id })
         res.status(201).json({ accessToken })
 
@@ -106,4 +111,13 @@ const createAccessToken = (user) => {
 const createRefreshToken = (user) => {
     return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '7d' })
 }
-module.exports = { register, login, logout, getUser, refreshToken, addCart }
+
+const history = async (req, res) => {
+    try {
+        const history = await Payments.find({ user_id: req.user.id })
+        res.json(history)
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
+}
+module.exports = { register, login, logout, getUser, refreshToken, addCart, history }

@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 import { Link } from "react-router-dom";
 import Cart from './icon/cart.svg'
 import Menu from './icon/bars-solid.svg'
@@ -7,7 +7,6 @@ import './header.css'
 import { globalState } from '../globalState/GlobalState';
 function Header() {
     const state = useContext(globalState)
-    console.log(state);
     const [isLogged, setisLogged] = state.userAPI.isLogged
     const [isAdmin, setisAdmin] = state.userAPI.isAdmin
     const [cart] = state.userAPI.cart
@@ -18,7 +17,6 @@ function Header() {
             .then(responce => responce)
             .catch(error => error)
         localStorage.clear()
-      
         window.location.href = "/"
     }
     const AdminRouter = () => {

@@ -26,7 +26,7 @@ class APIfeatures {
     paginating() {
         const page = this.queryString.page * 1 || 1
         const limit = this.queryString.limit * 1 || 9
-        const skip = (page -1) * limit
+        const skip = (page - 1) * limit
         this.query = this.query.skip(skip).limit(limit)
         return this;
     }
@@ -36,22 +36,24 @@ const getProducts = async (req, res) => {
         const featers = new APIfeatures(Product.find(), req.query).filtering().sorting().paginating()
         const products = await featers.query
         res.status(200).json({
-            result:products.length,
-            products:products})
+            result: products.length,
+            products: products
+        })
     } catch (error) {
         return res.status(500).json({ message: error.message })
     }
 }
 const creatProduct = async (req, res) => {
     try {
-        const { product_id, title, price, description, content, images, category } = req.body
-        if (!images) return res.status(400).json({ message: "no image upload" })
-        const product = await Product.findOne({ product_id })
+        const { product_id, title, price, description, content, image, category } = req.body
+        if (!image) return res.status(400).json({ message: "no image upload" })
+        const product = await Product.findOne({ product_id: product_id }) /// product_id
+
         if (product) return res.status(400).json({ message: "this product already exists" })
         const newProduct = new Product({
-            product_id, title: title.toLowerCase(), price, description, content, images, category
+            product_id, title: title.toLowerCase(), price, description, content, images: image, category
         })
-        await newProduct.save()
+        newProduct.save()
         res.status(200).json({ message: "created product" })
 
     } catch (error) {
@@ -68,10 +70,10 @@ const deleteProduct = async (req, res) => {
 }
 const updateProduct = async (req, res) => {
     try {
-        const { product_id, title, price, description, content, images, category } = req.body
-        if (!images) return res.status(400).json({ message: "no image upload" })
+        const { product_id, title, price, description, content, image, category } = req.body
+        if (!image) return res.status(400).json({ message: "no image upload" })
         await Product.findOneAndUpdate({ _id: req.params.id }, {
-            title: title.toLowerCase(), price, description, content, images, category
+            title: title.toLowerCase(), price, description, content, images:image, category
         })
         res.status(200).json({ message: "updated product" })
     } catch (error) {

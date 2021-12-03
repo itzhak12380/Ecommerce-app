@@ -8,6 +8,7 @@ function DetailProduct() {
     const state = useContext(globalState)
     const [detailProduct, setdetailProduct] = useState([])
     const product = state.productsAPI.products.products
+    const addCart =  state.userAPI.addCart
 
     useEffect(() => {
         if (params.id) {
@@ -22,7 +23,7 @@ function DetailProduct() {
     return (
         <>
             <div className="detail">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsr99d1JV5TXcOAbkzCUao6FrVQzaEfAcnog&usqp=CAU"
+                <img src={detailProduct.images.url}
                     alt=""
                 />
                 <div className="box-detail">
@@ -34,7 +35,9 @@ function DetailProduct() {
                     <p>{detailProduct.descriptiond}</p>
                     <p>{detailProduct.content}</p>
                     <p> Sold: {detailProduct.sold}</p>
-                    <Link className="cart" to="/cart">Buy Now</Link>
+                    <Link className="cart" to="/cart" onClick={()=> addCart(detailProduct)}>
+                        Buy Now
+                    </Link>
                 </div>
             </div>
             <div>

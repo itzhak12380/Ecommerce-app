@@ -7,9 +7,5 @@ const fs = require('fs')
 
 router.post('/upload',auth,authAdmin,Images.uploadImage)
 router.post('/destroy',auth,authAdmin, Images.deleteImage)
-const removeTmp = (path) => {
-    fs.unlink(path, err => {
-        if (err) throw err
-    })
-}
+
 module.exports = router

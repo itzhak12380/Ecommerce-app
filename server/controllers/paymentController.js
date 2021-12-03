@@ -12,6 +12,11 @@ const getPayments = async (req,res)=>{
         return res.status(500).json({message:error.message})
     }
 }
+const sold = async (id,quantity,oldSold)=>{
+    await Products.findOneAndUpdate({_id:id},{
+        sold: quantity + oldSold
+    })
+}
 
 const createPayment = async (req,res)=>{
     try {
@@ -22,8 +27,11 @@ const createPayment = async (req,res)=>{
         const newPayment=  new Payment({
             user_id:_id,name,email,cart,paymentID,address
         })
-        res.json({newPayment})
-        newPayment.save()
+        cart.filter(item =>{
+            return sold(item._id,item.quantity,item.sold)
+        })
+       await newPayment.save()
+        res.json({message:'payment was success!'})
     } catch (error) {
         return res.status(500).json({message:error.message})
     }

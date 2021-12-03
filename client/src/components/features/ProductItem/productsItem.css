@@ -6,6 +6,7 @@
     box-shadow: 0 0 15px #ddd;
     margin: 10px 0;
     position: relative;
+    border: 1px solid #ccc;
 }
 .product_card img{
     width: 100%;

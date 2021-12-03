@@ -1,17 +1,18 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { globalState } from '../globalState/GlobalState'
-function BtnRender({ product }) {
+function BtnRender({ product,deleteProduct }) {
     const state = useContext(globalState)
     const [isAdmin] = state.userAPI.isAdmin
     const addCart = state.userAPI.addCart
+    
     return (
         <div className="row_btn">
             {
                 isAdmin ?
                     <>
 
-                        <Link id="btn_buy" to="#!">
+                        <Link id="btn_buy" to="#!" onClick={deleteProduct}>
                             Delete
                         </Link>
                         <Link id="btn_view" to={`/edit_product/${product._id}`}>
