@@ -53,10 +53,9 @@ font-size: 150%;
   letter-spacing: 2px;
 }
 
-.row{
-
-}
-
-.cart{
-
+@media (max-width: 500px){
+  .detail{
+    font-size: 100%;
+    padding: 0;
+  }
 }

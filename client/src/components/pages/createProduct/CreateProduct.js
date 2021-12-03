@@ -6,9 +6,9 @@ import { Navigate, useParams } from "react-router-dom";
 const initialState = {
     product_id: "",
     title: "",
-    price: "",
-    description: "",
-    content: "",
+    price: "120",
+    description: "In general, a product is defined as a “thing produced by",
+    content: "In general, a product is defined as a “thing produced by labor or effort” or the “result of an act or a process. ” The word “product” stems from the verb “produce”, from the Latin prōdūce(re) “(to) lead or bring forth. ” Since 1575, the word “product” has referred to anything produced.",
     category: "",
     _id: ""
 }
@@ -99,21 +99,21 @@ function CreateProduct() {
             if (!image) return alert("No image choosen")
 
             if (onEdit) {
-                
+
                 await fetch(`http://localhost:8080/api/product/${product._id}`, {
                     method: "put", headers: {
                         "Content-Type": "application/json",
                         "Authorization": `Bearer ${localStorage.accessToken}`
                     },
                     body: JSON.stringify({ ...product, image: image })
-                }).then(res => res.json()).then(responce => console.log( responce)).catch(error => error)
+                }).then(res => res.json()).then(responce => console.log(responce)).catch(error => error)
 
-              
+
                 setproductCall(!productCall)
                 setDone(true)
             }
             else {
-             await fetch("http://localhost:8080/api/product", {
+                await fetch("http://localhost:8080/api/product", {
                     method: "post", headers: {
                         "Content-Type": "application/json",
                         "Authorization": `Bearer ${localStorage.accessToken}`
@@ -121,7 +121,7 @@ function CreateProduct() {
                     body: JSON.stringify({ ...product, image: image })
                 }).then(res => res.json()).then(responce => responce).catch(error => error)
 
-               
+
                 setproductCall(!productCall)
                 setDone(true)
             }
@@ -183,7 +183,7 @@ function CreateProduct() {
                         }
                     </select>
                 </div>
-                <button  type="submit" >{onEdit ? "update" : "Create"}</button>
+                <button type="submit" >{onEdit ? "update" : "Create"}</button>
             </form>
         </div>
     )

@@ -1,47 +1,12 @@
-import React,{useContext,useState} from 'react'
+import React from 'react'
 import './productsItem.css'
 import BtnRender from './BtnRender'
-import { globalState } from '../globalState/GlobalState'
-import Loading from '../loading/Loading'
-function ProductItem({ product,isAdmin,setproduct }) {
-    const state = useContext(globalState)
-    const [productCall, setproductCall] = state.productsAPI.productCall
-    const [LoadingState, setLoadingState] = useState(false)
-    const deleteProduct = async ()=>{
-        try {
-            setLoadingState(true)
-            const destroyImage =   fetch("http://localhost:8080/api/destroy", {
-                method: "post", headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${localStorage.accessToken}`
-                },
-                body: JSON.stringify({ public_id:product.images.public_id})
-            }).then(res => res.json()).then(responce => responce).catch(error => error)
-            const deleteProduct =   fetch(`http://localhost:8080/api/product/${product._id}`, {
-                method: "delete", headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${localStorage.accessToken}`
-                }
-            }).then(res => res.json()).then(responce => responce).catch(error => error)
-            await destroyImage
-            await deleteProduct
-            setLoadingState(false)
-            setproductCall(!productCall)
-        } catch (error) {
-            alert(error.message)
-        }
-    }
-    const handleCheck = ()=>{
-        let newProduct = [...product]
-
-        newProduct.checked = !newProduct.checked
-        setproduct(newProduct)
-    }
-    if(LoadingState) return <div className="product_card"><Loading/></div> 
+function ProductItem({ product,isAdmin,deleteProduct,handleCheck }) {
+ 
     return (
         <div className="product_card">
             {
-                isAdmin && <input type="checkbox" checked={product.checked} onChange={handleCheck} />
+                isAdmin && <input type="checkbox" checked={product.checked} onChange={()=>handleCheck(product._id)} />
             }
             <img src={product.images.url} alt="" />
             <div className="product_box">
@@ -50,7 +15,7 @@ function ProductItem({ product,isAdmin,setproduct }) {
                 <p>{product.description}</p>
             </div>
             <div >
-            <BtnRender product={product} deleteProduct={deleteProduct} />
+            <BtnRender product={product} deleteProduct={()=>deleteProduct(product._id ,product.images.public_id)} />
             </div>
         </div>
     )

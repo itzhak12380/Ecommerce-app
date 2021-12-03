@@ -20,6 +20,12 @@ button{
   cursor: pointer;
 }
 
+@media (max-width: 500px){
+  .app{
+    padding: 0 10px;
+  }
+}
+
 /* .App {
   text-align: center;
 }
