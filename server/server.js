@@ -34,8 +34,13 @@ app.use('/api', paymentRouter)
 
 
 
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static('client/build'))
+    app.get("*",(req,res)=>{
+        res.sendFile(path.join(__dirname,'client','build','index'))
+    })
+}
 
-// listn
 const PORT = process.env.port || 5000
 app.listen(PORT, (error) => {
     if (error) throw error

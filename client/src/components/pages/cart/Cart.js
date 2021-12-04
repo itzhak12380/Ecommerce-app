@@ -59,15 +59,16 @@ function Cart() {
         }
     }
     const tranSuccess = async (payment) => {
+        console.log(cart);
         const { paymentID, address } = payment
         await fetch("http://localhost:8080/api/payment", {
             method: "post", headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${localStorage.accessToken}`,
             },
-            body: JSON.stringify({ cart, paymentID, address })
+            body: JSON.stringify({ cart:cart, paymentID, address })
         }).then(res => res.json()).then(responce => responce).catch(error => error)
-
+    
         setCart([])
         addToCart([])
         alert("you have successfully placed an order.")

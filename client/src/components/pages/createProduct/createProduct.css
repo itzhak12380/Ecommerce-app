@@ -89,3 +89,8 @@
     letter-spacing: 2px;
     font-weight: 700;
 }
+@media (max-width: 500px){
+    .create_product .upload{
+     margin:20px 0;
+    }
+  }

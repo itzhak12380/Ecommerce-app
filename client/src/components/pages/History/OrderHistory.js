@@ -7,7 +7,8 @@ import "./History.css"
 function OrderHistory() {
     const state = useContext(globalState)
     const [history,sethistory] = state.userAPI.history    
-    const [isAdmin] = state.userAPI.isAdmin    
+    const [isAdmin] = state.userAPI.isAdmin  
+    console.log(history);  
     useEffect(() => {
         const token = localStorage.accessToken
 
@@ -20,6 +21,7 @@ function OrderHistory() {
                             "Authorization": `Bearer ${localStorage.accessToken}`
                         }
                     }).then(res => res.json()).then(responce => responce).catch(error => error)
+                    console.log(res);
                     sethistory(res);
                 }
                 else{
@@ -29,6 +31,7 @@ function OrderHistory() {
                             "Authorization": `Bearer ${localStorage.accessToken}`
                         }
                     }).then(res => res.json()).then(responce => responce).catch(error => error)
+                    console.log(res);
                     sethistory(res);
                 }
                   

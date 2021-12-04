@@ -55,6 +55,22 @@
     flex: 1;
     margin: 0 10px;
 }
+@media (max-width: 500px){
+    .filter_menu input{
+      margin: 0;
+    }
+    .filter_menu .sort{
+      flex: 1;
+    }
+    .filter_menu .sort select{
+      width: 100%;
+      min-width: 290px;
+      margin: 5px 0;
+    }
+    .delete-all{
+        margin: 20px 0;
+    }
+  }
 
 
 /*  LoadMore.js css */

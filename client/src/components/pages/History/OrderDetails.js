@@ -50,7 +50,7 @@ function OrderDetails() {
                         orderDetails.cart.map((item) => {
                             return (
                                 <tr key={item._id}>
-                                    <td><img src="https://www.topgear.com/sites/default/files/cars-car/carousel/2019/01/2018-chevrolet-camaro-zl1-033.jpg"/></td>
+                                    <td><img src={item.images.url}/></td>
                                     <td>{item.title}</td>
                                     <td>{item.quantity}</td>
                                     <td>$ {item.price * item.quantity}</td>
