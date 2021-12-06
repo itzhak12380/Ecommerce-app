@@ -1,14 +1,12 @@
 import React, { useContext,useEffect } from 'react'
 import { globalState } from '../../features/globalState/GlobalState'
 import { Link } from 'react-router-dom'
-import Login from '../auth/Login'
 import Loading from '../../features/loading/Loading'
 import "./History.css"
 function OrderHistory() {
     const state = useContext(globalState)
     const [history,sethistory] = state.userAPI.history    
     const [isAdmin] = state.userAPI.isAdmin  
-    console.log(history);  
     useEffect(() => {
         const token = localStorage.accessToken
 
@@ -21,7 +19,6 @@ function OrderHistory() {
                             "Authorization": `Bearer ${localStorage.accessToken}`
                         }
                     }).then(res => res.json()).then(responce => responce).catch(error => error)
-                    console.log(res);
                     sethistory(res);
                 }
                 else{
@@ -31,7 +28,6 @@ function OrderHistory() {
                             "Authorization": `Bearer ${localStorage.accessToken}`
                         }
                     }).then(res => res.json()).then(responce => responce).catch(error => error)
-                    console.log(res);
                     sethistory(res);
                 }
                   

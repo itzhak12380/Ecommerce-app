@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { globalState } from '../../features/globalState/GlobalState'
-import { Link } from 'react-router-dom'
 import PaypalButton from './PaypalButton'
 import './cart.css'
 function Cart() {

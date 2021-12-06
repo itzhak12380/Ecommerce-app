@@ -19,8 +19,6 @@ function Products() {
     const [LoadingState, setLoadingState] = useState(false)
     const [isCheck, setisCheck] = useState(false)
     const handleCheck = (id) => {
-        console.log(id);
-        // console.log(products);
         products.forEach(product => {
             if (product._id === id) product.checked = !product.checked
         });
@@ -95,7 +93,7 @@ function Products() {
                     })
                 }
             </div>
-            <LoadMore/>
+            <LoadMore />
             {products.length === 0 && <Loading />}
         </>
     )

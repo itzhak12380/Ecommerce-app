@@ -5,10 +5,6 @@ import CategoriesAPI from '../api/CategoriesAPI'
 export const globalState = createContext()
 
 export const DataProvider = ({ children }) => {
-    // const firstLogin = localStorage.getItem('firstLogin') // for refreshToken
-    useEffect(() => {
-       
-    }, [])
     const state = {
         productsAPI: ProductApi(),
         userAPI: UserAPI(),

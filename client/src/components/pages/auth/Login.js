@@ -11,13 +11,6 @@ function Login() {
         const { name, value } = e.target
         setuser({ ...user, [name]: value })
     }
-    const tokenExpierd = () => {
-        setTimeout(() => {
-            alert('your sign up session has expired please sign again')
-            localStorage.clear()
-            window.location.href = "/";
-        }, 15000);
-    }
     const loginSubmit = async e => {
         e.preventDefault()
         try {
@@ -31,7 +24,6 @@ function Login() {
                 localStorage.setItem('accessToken', token.accessToken)
                 localStorage.setItem('firstLogin', true)
                 window.location.href = "/";
-                // tokenExpierd()
             }
             else {
                 setisFaild(true);

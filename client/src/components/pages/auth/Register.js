@@ -17,7 +17,6 @@ function Register() {
             .then(res => res.json())
             .then(responce => responce )
             .catch(error => error)
-            // console.log(res);
             localStorage.setItem('accessToken', res.accessToken)
             localStorage.setItem('firstLogin', true)
             window.location.href = "/";

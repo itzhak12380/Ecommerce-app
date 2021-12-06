@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import { globalState } from '../../features/globalState/GlobalState'
 import './categories.css'
 function Categories() {

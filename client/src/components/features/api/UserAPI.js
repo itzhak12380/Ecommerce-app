@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import Login from '../../pages/auth/Login'
 function UserAPI() {
     const [isLogged, setisLogged] = useState(false)
     const [isAdmin, setisAdmin] = useState(false)
@@ -27,9 +26,6 @@ function UserAPI() {
             }
 
             getUser()
-        }
-        else {
-            console.log("error line 35");
         }
     }, [localStorage.accessToken])
  
