@@ -35,6 +35,13 @@ app.use('/api', paymentRouter)
 //         res.sendFile(path.join(__dirname,'client','build','index'))
 //     })
 // }
+const PORT = process.env.port || 8080
+
+app.listen(PORT, (error) => {
+    if (error) throw error
+    console.log("Server is up on port " + PORT);
+})
+
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "./client/build")));
   
@@ -49,10 +56,3 @@ if (process.env.NODE_ENV === "production") {
       );
     });
   }
-
-const PORT = process.env.port || 5000
-app.listen(PORT, (error) => {
-    if (error) throw error
-    console.log("Server is up on port " + PORT);
-})
-
