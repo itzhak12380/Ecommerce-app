@@ -12,4 +12,4 @@ const authAdmin = async (req,res,next)=>{
         return res.status(500).json({err:err.message})
     }
 }
-module.exports = authAdmin
+module.exports = {authAdmin}
